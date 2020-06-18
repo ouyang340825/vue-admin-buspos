@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div v-html="socketData"></div>
+    <div v-html="socketData" />
   </div>
 </template>
 

@@ -81,3 +81,33 @@
 .el-pagination {
   font-weight: 500 !important;
 }
+
+
+.el-table--border {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/*按钮块*/
+.buttenBlock{
+  border:1px solid #EBEEF5;
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #f7f7f7;
+}
+
+/*按钮块*/
+.queryBlock{
+  width: 100%;
+  padding: 10px 16px;
+  background-color: #f7f7f7;
+  border-left:5px solid #42b983 ;
+}
+
+.el-input__inner{
+  height: 35px !important;
+}
+
+.el-input {
+  width: 90%;
+}

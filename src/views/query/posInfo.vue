@@ -3,20 +3,20 @@
     <div class="queryBlock">
       <el-row>
         <el-col :span="6">
-          <el-input v-model="text1" placeholder="请输入内容"></el-input>
+          <el-input v-model="listQuery.POS_ID" placeholder="请输入POS编号"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="text2" placeholder="请输入内容"></el-input>
+          <el-input v-model="listQuery.LINE_NO" placeholder="请输入线路号"></el-input>
         </el-col>
         <el-col :span="6">
-          <el-input v-model="text1" placeholder="请输入内容"></el-input>
+          <el-input v-model="listQuery.CAR_NO" placeholder="请输入车辆号"></el-input>
         </el-col>
       </el-row>
     </div>
     <div class="buttenBlock" style="margin-top: 10px">
       <el-row>
-        <el-button size="mini" plain>查询</el-button>
-        <el-button type="primary" size="mini" plain>重置</el-button>
+        <el-button size="mini" plain @click="queryData">查询</el-button>
+        <el-button type="primary" size="mini" @click="resetQuery" plain>重置</el-button>
         <el-button type="success" size="mini" plain>导出</el-button>
       </el-row>
     </div>
@@ -116,11 +116,15 @@ export default {
       text1: null,
       text2: null,
       text3: null,
-      tableHeight: document.documentElement.clientHeight - 265,
+      tableHeight: document.documentElement.clientHeight - 270,
       list: null,
       total: 0,
       listLoading: true,
       listQuery: {
+        POS_ID: null,
+        COMPANY_NO: null,
+        LINE_NO: null,
+        CAR_NO: null,
         page: 1,
         limit: 50
       }
@@ -128,7 +132,7 @@ export default {
   },
   mounted() {
     window.onresize = () => {
-      this.tableHeight = document.documentElement.clientHeight - 265
+      this.tableHeight = document.documentElement.clientHeight - 270
     }
   },
   created() {
@@ -145,6 +149,13 @@ export default {
         }, 0.2 * 1000)
       })
     },
+    resetQuery() {
+      this.listQuery.POS_ID = null
+      this.listQuery.COMPANY_NO = null
+      this.listQuery.LINE_NO = null
+      this.listQuery.CAR_NO = null
+      this.queryData()
+    },
     formatOverTime: function(row, column) {
       return row.OVER_TIME === '2M' ? '<span style="color:red;">超时2天</span>'
         : row.OVER_TIME === '1M' ? '<span style="color:#ff8e18;">超时1天</span>'
@@ -154,5 +165,13 @@ export default {
 }
 </script>
 <style scoped>
+  .el-input__inner{
+    height: 35px !important;
+  }
+
+  .el-input {
+    width: 90%;
+  }
+
 </style>
 
